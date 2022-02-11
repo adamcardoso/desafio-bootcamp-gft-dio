@@ -18,7 +18,7 @@ public class Main {
         curso1.setCargaHoraria(4);
 
         Conteudo conteudo = new Curso();
-        
+
 
         Mentoria mentoria = new Mentoria();
         mentoria.setTitulo("mentoria de Java");
