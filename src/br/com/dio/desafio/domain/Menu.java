@@ -13,6 +13,11 @@ public class Menu {
 
     Scanner input = new Scanner(System.in);
 
+    Curso curso = new Curso();
+    Mentoria mentoria = new Mentoria();
+    Bootcamp bootcamp = new Bootcamp();
+    Dev developer = new Dev();
+
     public void chamandoMenu(){
         int opcao = 0;
         do {
@@ -32,8 +37,6 @@ public class Menu {
             System.out.print("\n");
             switch (opcao) {
                 case 1:
-                    Curso curso = new Curso();
-
                     System.out.print("Qual o curso? ");
                     String cursoInserido = input.next();
                     curso.setTitulo(cursoInserido);
@@ -51,9 +54,8 @@ public class Menu {
                         System.err.print("Ops... você digitou caracteres. Precisamos que digite apenas números.");
                     }
                     break;
-                case 2:
-                    Mentoria mentoria = new Mentoria();
 
+                case 2:
                     System.out.print("Sobre o que é a mentoria? ");
                     String insereMentoria = input.next();
                     mentoria.setTitulo(insereMentoria);
@@ -65,20 +67,53 @@ public class Menu {
                     mentoria.setDescricao(descreveMentoria);
                     input.nextLine();
                     break;
+
                 case 3:
+                    System.out.println("Qual o nome do bootcamp (Ex.: Bootcamp Java Developer)? ");
+                    String nomeBootcamp = input.next();
+                    bootcamp.setNome(nomeBootcamp);
+
+                    input.nextLine();
+
+                    System.out.println("Descreva o bootcamp: ");
+                    String descricaoBootcamp = input.next();
+                    bootcamp.setDescricao(descricaoBootcamp);
+
+                    bootcamp.getConteudos().add(curso);
+                    bootcamp.getConteudos().add(curso);
+                    bootcamp.getConteudos().add(mentoria);
+                    input.nextLine();
 
                     break;
+
                 case 4:
+                    System.out.println("Qual o nome do developer: ");
+                    String nomeDev = input.next();
+                    developer.setNome(nomeDev);
+                    developer.inscreverBootcamp(bootcamp);
+
+                    System.out.printf("Conteúdos inscritos por %s\n: ", nomeDev, developer.getConteudosInscritos());
+                    developer.progredir();
+                    developer.progredir();
+                    System.out.println("-");
+                    System.out.printf("Conteúdos inscritos por %s\n: ", nomeDev, developer.getConteudosInscritos());
+                    System.out.printf("Conteúdos inscritos por %s\n: ", nomeDev, developer.getConteudosInscritos());
+                    System.out.println("XP:" + developer.calcularTotalXP());
+                    break;
+
+                case 5:
 
                     break;
+
                 case 0:
                     System.out.println("Você está saindo do sistema! Obrigado!");
                     break;
+
                 default:
                     System.out.println("Opção Inválida!");
                     break;
             }
-        } while (Objects.nonNull(opcao));
+        } while (opcao != 0);
     }
 
     public void teste(){
